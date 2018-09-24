@@ -30,7 +30,6 @@ let g:ycm_key_list_previous_completion = ['C-p>', '<Up>']
 
 let g:vimtex_compiler_latexmk = {
     \ 'options' : [
-    \   '-pdf',
     \   '-shell-escape',
     \   '-verbose',
     \   '-file-line-error',
