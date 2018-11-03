@@ -3,11 +3,17 @@ call plug#begin('~/vim/plugged')
 Plug 'lervag/vimtex'
 Plug 'vim-syntastic/syntastic'
 Plug 'SirVer/ultisnips'
+Plug 'vimwiki/vimwiki'
 
 call plug#end()
 
 set number
 set spell
+
+" VimWiki Requirements
+set nocompatible
+filetype plugin on
+syntax on
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -39,5 +45,6 @@ let g:vimtex_compiler_latexmk = {
     \}
 let g:vimtex_view_method = 'zathura'
 
+let g:vimwiki_list = [{'path': '~/Nextcloud/Wiki/', 'index': 'index', 'ext': '.md', 'syntax': 'markdown'}]
 
 nmap <F10> <Esc>[sz=
