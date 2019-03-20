@@ -2,8 +2,9 @@ call plug#begin('~/vim/plugged')
 
 Plug 'lervag/vimtex'
 Plug 'vim-syntastic/syntastic'
-Plug 'SirVer/ultisnips'
 Plug 'vimwiki/vimwiki'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 
 call plug#end()
 

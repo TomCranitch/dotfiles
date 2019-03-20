@@ -159,6 +159,21 @@ snippet mat "Matrix"
 \end{$1matrix} ${0}
 endsnippet
 
+snippet twomat "Matrix"
+\begin{${1:p/b/v/V/B/small}matrix}
+	${2} & ${3} \\\
+	${4} & ${5} 
+\end{$1matrix} ${0}
+endsnippet
+
+snippet threemat "Matrix"
+\begin{${1:p/b/v/V/B/small}matrix}
+	${2} & ${3} & ${5} \\\
+	${6} & ${7} & ${8} \\\
+	${9} & ${9} & ${9}
+\end{$1matrix} ${0}
+endsnippet
+
 snippet lr "Left-Right Brackets"
 \left( ${1} \right) ${0}
 endsnippet
@@ -167,12 +182,20 @@ snippet lrs "Left-Right Square Brackets"
 \left[ ${1} \right] ${0}
 endsnippet
 
-snippet lrc "Left-Right Curley Braces"
-\left{ ${1} \right} ${0}
+snippet lrc "Left-Right Curly Braces"
+\left\\{ ${1} \right\\} ${0}
+endsnippet
+
+snippet lra "Angle Brackets"
+\langle ${1}, ${2} \rangle ${0}
 endsnippet
 
 snippet setb "Set Builder"
-\{ ${1} | ${2} \} ${0}
+\left\\{ ${1} | ${2} \right\\} ${0}
+endsnippet
+
+snippet setbp "Set Builder"
+\left\\{ (${1}, ${2}) | ${3} \right\\} ${0}
 endsnippet
 
 snippet { "Curley Braces"
@@ -186,6 +209,22 @@ endsnippet
 
 snippet dint "Integral"
 \int_{${1}}^{${2}} ${3} \, d${4} ${0}
+endsnippet
+
+snippet arint "Double Integral"
+\iint_{${1:D}} ${2} \, d${3:A} ${0}
+endsnippet
+
+snippet doint "Integral"
+\int_{${1}}^{${2}} \int_{${3}}^{${4}} ${5} \, d${6} d${7} ${0}
+endsnippet
+
+snippet trint "Integral"
+\int_{${1}}^{${2}} \int_{${3}}^{${4}} \int_{${5}}^{${6}} ${7} \, d${8} d${9} d${10} ${0}
+endsnippet
+
+snippet voint "Integral"
+\iiint_{${1:D}} ${2} \, d${3:V} ${0}
 endsnippet
 
 snippet sum "Sum"
@@ -253,6 +292,10 @@ endsnippet
 
 snippet ZZ "mathbb Z"
 \mathbb{Z}
+endsnippet
+
+snippet FF "mathbb F"
+\mathbb{F}
 endsnippet
 
 snippet bs "Brackets Squared"

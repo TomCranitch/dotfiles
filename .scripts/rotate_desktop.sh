@@ -13,6 +13,7 @@
 # Configure these to match your hardware (names taken from `xinput` output).
 TOUCHPAD='DELL080D:00 06CB:7A13 Touchpad'
 TOUCHSCREEN='Wacom HID 4875 Finger'
+PEN='Wacom HID 4875 Pen Pen (0x3a0306da)'
 
 if [ -z "$1" ]; then
   echo "Missing orientation."
@@ -31,18 +32,22 @@ function do_rotate
     normal)
       [ ! -z "$TOUCHPAD" ]    && xinput set-prop "$TOUCHPAD"    "$TRANSFORM" 1 0 0 0 1 0 0 0 1
       [ ! -z "$TOUCHSCREEN" ] && xinput set-prop "$TOUCHSCREEN" "$TRANSFORM" 1 0 0 0 1 0 0 0 1
+      [ ! -z "$PEN" ] && xinput set-prop "$PEN" "$TRANSFORM" 1 0 0 0 1 0 0 0 1
       ;;
     inverted)
       [ ! -z "$TOUCHPAD" ]    && xinput set-prop "$TOUCHPAD"    "$TRANSFORM" -1 0 1 0 -1 1 0 0 1
       [ ! -z "$TOUCHSCREEN" ] && xinput set-prop "$TOUCHSCREEN" "$TRANSFORM" -1 0 1 0 -1 1 0 0 1
+      [ ! -z "$PEN" ] && xinput set-prop "$PEN" "$TRANSFORM" -1 0 1 0 -1 1 0 0 1
       ;;
     left)
       [ ! -z "$TOUCHPAD" ]    && xinput set-prop "$TOUCHPAD"    "$TRANSFORM" 0 -1 1 1 0 0 0 0 1
       [ ! -z "$TOUCHSCREEN" ] && xinput set-prop "$TOUCHSCREEN" "$TRANSFORM" 0 -1 1 1 0 0 0 0 1
+      [ ! -z "$PEN" ] && xinput set-prop "$PEN" "$TRANSFORM" 0 -1 1 1 0 0 0 0 1
       ;;
     right)
       [ ! -z "$TOUCHPAD" ]    && xinput set-prop "$TOUCHPAD"    "$TRANSFORM" 0 1 0 -1 0 1 0 0 1
       [ ! -z "$TOUCHSCREEN" ] && xinput set-prop "$TOUCHSCREEN" "$TRANSFORM" 0 1 0 -1 0 1 0 0 1
+      [ ! -z "$PEN" ] && xinput set-prop "$PEN" "$TRANSFORM" 0 1 0 -1 0 1 0 0 1
       ;;
   esac
 }
