@@ -1,0 +1,111 @@
+# Normal Template
+snippet ntemp "Normal Template"
+\documentclass[a4]{article}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{pgf,tikz}
+\usepackage{mathrsfs}
+\usepackage{pdfpages}
+\usepackage[export]{adjustbox}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{subfig}
+\usepackage{listings}
+\usepackage[framemethod=TikZ]{mdframed}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[subsection]
+\theoremstyle{remark}
+\newtheorem*{rem}{Remark}
+
+% Use plack square to end proofs
+\renewcommand\qedsymbol{$\blacksquare$}
+
+% Corrects Items which begin with math environments
+\newcommand\Item[1][]{%
+	\ifx\relax#1\relax  \item \else \item[#1] \fi
+	\abovedisplayskip=0pt\abovedisplayshortskip=0pt~\vspace*{-\baselineskip}} \newcommand\tikzItem[1][]{ \ifthenelse{\equal{#1}{}}{\item}{\item[#1]} \leavevmode\vadjust{\vspace{-\baselineskip}}\newline
+}	
+
+
+\graphicspath{images/}
+
+
+% Document Information
+\title{${1}}
+\author{${2:Tom Cranitch}}
+${3:%}\date{${4:`!v strftime("%b %d, %Y")`}}
+
+% Footer
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
+\fancyhf{}
+\rfoot{${5} $\vert$ \thepage}
+
+
+\begin{document}
+	\allowdisplaybreaks
+	\maketitle
+	\thispagestyle{fancy}
+	
+	\newpage
+	
+	${0}
+\end{document}
+endsnippet
+
+# Subfiles -  Main File Template
+snippet mtemp "Main File Template"
+%! TeX program = lualatex
+
+\documentclass[a4]{article}
+
+\input{../../header.tex}
+
+% Document Information
+\title{${1}}
+\author{${2:Tom Cranitch}}
+${3:%}\date{${4:August 19, 2018}}
+
+% Footer
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
+\fancyhf{}
+\rfoot{${5} $\vert$ \thepage}
+
+
+\begin{document}
+	\allowdisplaybreaks
+	\maketitle
+	\thispagestyle{fancy}
+	\newpage
+	
+	\section*{Introduction}
+	\label{introduction}
+
+	${1}
+
+	\newpage
+	\section{${1:section name}}
+	\label{sec:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+
+	${0}
+\end{document}
+endsnippet
+
+# Subfiles - Subfile Template
+snippet stemp "Subfile Template"
+\documentclass[../${1}.tex]{subfiles}
+
+\begin{document}
+	
+	\subsection{${1:subsection name}}
+	\label{sub:${2:${1/\\\w+\{(.*?)\}|\\(.)|(\w+)|([^\w\\]+)/(?4:_:\L$1$2$3\E)/ga}}}
+
+\end{document}
+endsnippet
