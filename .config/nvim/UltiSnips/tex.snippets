@@ -374,8 +374,8 @@ snip.rv = eval('latex(' + match.group(1).replace('\\', '') \
 `
 endsnippet
 
-snippet '\$\$' "Inline Math" wrA
-$$ ${1} $$ ${0}
+snippet '\$' "Inline Math" wrA
+$ ${1} $ ${0}
 endsnippet
 
 context "math()"
@@ -425,4 +425,8 @@ endsnippet
 context "math()"
 snippet " in" "in" riA
 \in
+endsnippet
+
+snippet restr "restrictions"
+${1}_{\mkern 1mu \vrule height 2ex\mkern2mu ${2}} ${0}
 endsnippet

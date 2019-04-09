@@ -7,6 +7,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'w0rp/ale'
 Plug 'Shougo/deoplete.nvim'
 Plug 'majutsushi/tagbar'
+Plug 'skywind3000/asyncrun.vim'
 
 call plug#end()
 
@@ -34,7 +35,13 @@ let g:vimtex_compiler_latexmk = {
     \ ],
     \}
 let g:vimtex_view_method = 'zathura'
-set conceallevel=1
-let g:tex_conceal='abdmg'
+"set conceallevel=1
+"let g:tex_conceal='abdmg'
 
 nmap <F10> <Esc>[sz=
+" autocmd FileType c map <F8> :w <CR> :!gcc % -o %< && ./%< <CR>
+
+autocmd FileType c map <F8> :w <CR> :AsyncRun gcc % -o %< <CR> 
+autocmd FileType c map <F9> :AsyncRun "./%<" <CR>
+
+let g:asyncrun_open = 6
