@@ -45,7 +45,7 @@ for_window [class="."] border pixel 0
 hide_edge_borders both
 
 exec --no-startup-id wal -R -a 75
-exec --no-startup-id compton -b
+exec --no-startup-id compton -b --blur-background --blur-method kawase --backend glx
 
 exec --no-startup-id owncloud
 

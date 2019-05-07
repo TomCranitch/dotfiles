@@ -18,7 +18,7 @@ antibody bundle < ~/.zsh_plugins.txt
 
 # Customize powerlevel prompt
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(root_indicator vi_mode node_version pyenv java_version)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(root_indicator vi_mode)
 
 
 c() {

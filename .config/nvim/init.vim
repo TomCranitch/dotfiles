@@ -23,7 +23,8 @@ let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetDir = '~/.config/nvim/UltiSnips'
 let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
 
-"let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 1
+autocmd FileType tex let g:deoplete#enable_at_startup = 0
 
 let g:vimtex_compiler_latexmk = {
     \ 'options' : [
