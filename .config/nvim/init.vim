@@ -4,15 +4,17 @@ Plug 'lervag/vimtex'
 Plug 'SirVer/ultisnips'
 Plug 'junegunn/goyo.vim'
 Plug 'w0rp/ale'
-"Plug 'Shougo/deoplete.nvim'
 Plug 'majutsushi/tagbar'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'dylanaraps/wal.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'vim-airline/vim-airline'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'liuchengxu/vista.vim'
+Plug 'skywind3000/asyncrun.vim'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'dhruvasagar/vim-table-mode'
 
 call plug#end()
 
@@ -27,6 +29,7 @@ set tabstop=4
 set shiftwidth=4
 
 filetype on
+filetype plugin on
 
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
@@ -35,9 +38,6 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsEditSplit="vertical"
 let g:UltiSnipsSnippetDir = '~/.config/nvim/UltiSnips'
 let g:UltiSnipsSnippetDirectories = ['~/.config/nvim/UltiSnips', 'UltiSnips']
-
-"let g:deoplete#enable_at_startup = 1
-"autocmd FileType tex let g:deoplete#enable_at_startup = 0
 
 let g:vimtex_compiler_latexmk = {
     \ 'options' : [
@@ -53,25 +53,10 @@ let g:vimtex_view_method = 'zathura'
 "let g:tex_conceal='abdmg'
 
 nmap <F10> <Esc>[sz=
-" autocmd FileType c map <F8> :w <CR> :!gcc % -o %< && ./%< <CR>
-
-" autocmd FileType c map <F8> :w <CR> :AsyncRun gcc % -o %< <CR> 
-" autocmd FileType c map <F9> :AsyncRun "./%<" <CR>
 
 let g:asyncrun_open = 6
 
-" colorscheme wal
-
-" Disable the candidates in Comment/String syntaxes.
-"call deoplete#custom#source('_',
-"            \ 'disabled_syntaxes', ['Comment', 'String'])
-
-
-
-let g:airline_powerline_fonts = 1
 set noshowmode
-
-let g_airline_detect_spell=0
 
 nmap <F8> :TagbarToggle<CR>
 
@@ -96,3 +81,21 @@ function! s:show_documentation()
 endfunction
 
 nmap rn <Plug>(coc-rename)
+
+let g:pandoc#after#modules#enabled = ["ultisnips"]
+
+let g:vim_markdown_math = 1
+let g:vim_markdown_frontmatter = 1
+
+
+" TODO: not sure this is working
+function! s:isAtStartOfLine(mapping)
+  let text_before_cursor = getline('.')[0 : col('.')-1]
+  let mapping_pattern = '\V' . escape(a:mapping, '\')
+  let comment_pattern = '\V' . escape(substitute(&l:commentstring, '%s.*$', '', ''), '\')
+  return (text_before_cursor =~? '^' . ('\v(' . comment_pattern . '\v)?') . '\s*\v' . mapping_pattern . '\v$')
+endfunction
+
+inoreabbrev <expr> <bar><bar>
+          \ <SID>isAtStartOfLine('\|\|') ?
+          \ '<c-o>:TableModeEnable<cr><bar><space><bar><left><left>' : '<bar><bar>'
