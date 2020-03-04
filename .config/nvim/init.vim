@@ -13,7 +13,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 Plug 'liuchengxu/vista.vim'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
+Plug 'tomcranitch/vim-markdown'
 Plug 'dhruvasagar/vim-table-mode'
 
 call plug#end()
