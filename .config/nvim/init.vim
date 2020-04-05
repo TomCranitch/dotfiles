@@ -15,6 +15,8 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'godlygeek/tabular'
 Plug 'tomcranitch/vim-markdown'
 Plug 'dhruvasagar/vim-table-mode'
+Plug 'leafgarland/typescript-vim'
+Plug 'ianks/vim-tsx'
 
 call plug#end()
 

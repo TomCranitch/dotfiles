@@ -3,10 +3,12 @@ import sys
 import frontmatter
 import os
 import subprocess
+import parse_markdown as pmd
 
 aligncount = 0
-filename = '/tmp/' + os.path.splitext(os.path.basename(sys.argv[1]))[0] + '.tmp.md'
+#filename = '/tmp/' + os.path.splitext(os.path.basename(sys.argv[1]))[0] + '.tmp.md'
 artifactfilename = sys.argv[2] + '/' + os.path.splitext(os.path.basename(sys.argv[1]))[0] + '.pdf'
+filename = sys.argv[2] + '/' + os.path.splitext(os.path.basename(sys.argv[1]))[0] + '.tmp.rmd'
 
 with open(sys.argv[1], 'r') as file, open(filename, 'w') as outputf:
     file = frontmatter.load(file)
@@ -15,19 +17,15 @@ with open(sys.argv[1], 'r') as file, open(filename, 'w') as outputf:
 
     file.content = file.content.split('\n')
 
+    currthm = None
+
     for line in file.content:
-        if file['output'] != 'beamer_presentation' and line.startswith('---'):
-            line = line.replace('---', '\ *New Slide*\ ')
-
-        if '$$$' in line:
-            if aligncount % 2 == 0:
-                line = line.replace('$$$', '\\begin{align*}')
-            else:
-                line = line.replace('$$$', '\\end{align*}')
-            aligncount += 1
-
+        line, aligncount, currthm = pmd.parse_line(line, file['output'] != 'beamer_presentation', aligncount, currthm) 
         outputf.write(line + '\n')
 
 
 
+# subprocess.call(['R', "--quiet", "-e bookdown::render_book('" + filename + "',output_file='" + artifactfilename + "')"])
+# subprocess.call(['R', "--quiet", "-e bookdown::render_book('" + filename + "')"])
+#subprocess.call(['R', "--quiet", "-e rmarkdown::render('" + filename + "',output_file='" + artifactfilename + "')"])
 subprocess.call(['R', "--quiet", "-e rmarkdown::render('" + filename + "',output_file='" + artifactfilename + "')"])

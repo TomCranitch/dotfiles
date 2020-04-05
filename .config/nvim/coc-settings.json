@@ -10,7 +10,15 @@
 					"directory": ".ccls-cache"
 				}
 			}
+		},
+		"bash" : {
+			"command": "bash-language-server",
+			"args": ["start"],
+			"filetypes": ["sh"],
+			"ignoredRootPaths": ["~"]
 		}
 	},
 	"rust-client.disableRustup": true,
+    "coc.preferences.formatOnSaveFiletypes": ["css", "javascript", "javascriptreact", "typescript", "typescriptreact"],
+	"prettier.singleQuote": true,
 }
