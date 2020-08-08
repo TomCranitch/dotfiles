@@ -63,6 +63,8 @@ exec --no-startup-id ~/.scripts/autorotate.sh
 
 exec --no-startup-id nextcloud
 
+exec --no-startup-id dunst
+
 client.focused 		$bg	$bg	$fg	$bg	$bg
 client.focused_inactive	$bg	$bg	$fg	$bg	$bg
 client.unfocused 	$fg	$fg	$bg	$fg	$fg

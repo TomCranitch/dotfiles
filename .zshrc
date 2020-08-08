@@ -72,3 +72,7 @@ export PATH=/opt/flutter/bin:$PATH
 # Suppress opencv warnings
 export OPENCV_LOG_LEVEL=ERROR
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
+
+# Add .NET Core SDK tools
+export PATH="$PATH:/home/tom/.dotnet/tools"
+

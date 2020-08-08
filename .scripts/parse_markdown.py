@@ -16,17 +16,20 @@ class Thms(Enum):
     COR = "coro"
 
 def parse_line(line, ispres, aligncount, currthm):
-    if line[0:3] == '!!!':
+    #if line[0:3] == '!!!':
+    if '!!!' in line:
+        before = line.split('!!!')[0]
+        line = line.split('!!!')[1]
         if currthm != None:
-            return '\\end{' + currthm.value + '}', aligncount, None
+            return before + '\\end{' + currthm.value + '}', aligncount, None
         else:
-            currthm = Thms[line[3:6].upper()]
+            currthm = Thms[line[0:3].upper()]
             beginStatment = '\\begin{' + currthm.value + '}'
 
-            if len(line) > 6 and line[6] == '[':
-                beginStatment += line[6:]
+            if len(line) > 3 and line[3] == '[':
+                beginStatment += line[3:]
 
-            return beginStatment, aligncount, currthm
+            return before + beginStatment, aligncount, currthm
 
 
     line = line.split('>?', 1)[0]
