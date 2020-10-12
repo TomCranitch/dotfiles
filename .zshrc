@@ -73,6 +73,9 @@ export PATH=/opt/flutter/bin:$PATH
 export OPENCV_LOG_LEVEL=ERROR
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
 
+export JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
+export PATH=$JAVA_HOME/bin:$PATH
+
 # Add .NET Core SDK tools
 export PATH="$PATH:/home/tom/.dotnet/tools"
 

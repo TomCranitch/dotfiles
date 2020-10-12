@@ -19,6 +19,7 @@
 		}
 	},
 	"rust-client.disableRustup": true,
-    //"coc.preferences.formatOnSaveFiletypes": ["css", "javascript", "javascriptreact", "typescript", "typescriptreact"],
-	"prettier.singleQuote": true,
+    "coc.preferences.formatOnSaveFiletypes": ["css", "javascript", "javascriptreact", "typescript", "typescriptreact"],
+    "coc.preferences.hoverTarget": "float",
+	//"prettier.singleQuote": true,
 }

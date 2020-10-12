@@ -16,6 +16,8 @@ class Thms(Enum):
     COR = "coro"
 
 def parse_line(line, ispres, aligncount, currthm):
+    line = line.split('>?', 1)[0]
+
     #if line[0:3] == '!!!':
     if '!!!' in line:
         before = line.split('!!!')[0]
@@ -31,8 +33,6 @@ def parse_line(line, ispres, aligncount, currthm):
 
             return before + beginStatment, aligncount, currthm
 
-
-    line = line.split('>?', 1)[0]
 
     if ispres and line.startswith('---'):
         line = line.replace('---', '\ *New Slide*\ ')
