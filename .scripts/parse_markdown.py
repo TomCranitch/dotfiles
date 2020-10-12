@@ -15,27 +15,37 @@ class Thms(Enum):
     PRP = "prop"
     COR = "coro"
 
-def parse_line(line, ispres, aligncount, currthm):
+def parse_line(line, ispres, aligncount, currthm, omit):
     line = line.split('>?', 1)[0]
 
-    #if line[0:3] == '!!!':
+    if omit is None and ('!!<' in line or '!!>' in line):
+        return None, aligncount, currthm, None
+    if '!!>' in line:
+        return None, aligncount, currthm, False
+    if '!!<' in line:
+        return None, aligncount, currthm, True
+    if omit:
+        return None, aligncount, currthm, True
+
+
+
     if '!!!' in line:
         before = line.split('!!!')[0]
         line = line.split('!!!')[1]
-        if currthm != None:
-            return before + '\\end{' + currthm.value + '}', aligncount, None
-        else:
-            currthm = Thms[line[0:3].upper()]
-            beginStatment = '\\begin{' + currthm.value + '}'
+        if currthm is not None:
+            return before + '\\end{' + currthm.value + '}', aligncount, None, omit
 
-            if len(line) > 3 and line[3] == '[':
-                beginStatment += line[3:]
+        currthm = Thms[line[0:3].upper()]
+        begin_statment = '\\begin{' + currthm.value + '}'
 
-            return before + beginStatment, aligncount, currthm
+        if len(line) > 3 and line[3] == '[':
+            begin_statment += line[3:]
+
+        return before + begin_statment, aligncount, currthm, omit
 
 
     if ispres and line.startswith('---'):
-        line = line.replace('---', '\ *New Slide*\ ')
+        line = line.replace('---', '\\ *New Slide*\\ ')
 
     if '$$$' in line:
         if aligncount % 2 == 0:
@@ -44,4 +54,4 @@ def parse_line(line, ispres, aligncount, currthm):
             line = line.replace('$$$', '\\end{align*}')
         aligncount += 1
 
-    return line, aligncount, currthm
+    return line, aligncount, currthm, omit

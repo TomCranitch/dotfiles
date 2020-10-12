@@ -11,6 +11,7 @@ artifactfilename = sys.argv[2] + '/' + os.path.splitext(os.path.basename(sys.arg
 filename = sys.argv[2] + '/' + os.path.splitext(os.path.basename(sys.argv[1]))[0] + '.tmp.rmd'
 
 with open(sys.argv[1], 'r') as file, open(filename, 'w') as outputf:
+    print("Running...")
     file = frontmatter.load(file)
 
     outputf.write('---' + frontmatter.dumps(file).split('---')[1] + '---\n\n')
@@ -18,10 +19,15 @@ with open(sys.argv[1], 'r') as file, open(filename, 'w') as outputf:
     file.content = file.content.split('\n')
 
     currthm = None
+    omit = file.get('omit')
+
+    if omit:
+        print("Producing copy with omissions")
 
     for line in file.content:
-        line, aligncount, currthm = pmd.parse_line(line, file['output'] != 'beamer_presentation', aligncount, currthm) 
-        outputf.write(line + '\n')
+        line, aligncount, currthm, omit = pmd.parse_line(line, file['output'] != 'beamer_presentation', aligncount, currthm, omit) 
+        if line is not None:
+            outputf.write(line + '\n')
 
 
 
