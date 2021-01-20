@@ -17,6 +17,8 @@ Plug 'tomcranitch/vim-markdown'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx'
+Plug 'tpope/vim-dadbod'
+Plug 'jparise/vim-graphql'
 
 call plug#end()
 
