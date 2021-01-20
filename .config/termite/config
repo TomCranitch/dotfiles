@@ -47,11 +47,11 @@ cursor_foreground = #dcdccc
 
 # foreground = ${xrdb:foreground} 
 # foreground_bold = #ffffff
-#background = ${xrdb:background} 
+background = ${xrdb:background} 
 
 
 # 20% background transparency (requires a compositor)
-background = rgba(63, 63, 63, 0.8)
+# background = rgba(63, 63, 63, 0.8)
 
 # If unset, will reverse foreground and background
 highlight = #2f2f2f

@@ -30,7 +30,7 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec termite #i3-sensible-terminal
+bindsym $mod+Return exec kitty #i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -55,7 +55,7 @@ exec --no-startup-id compton -b
 
 exec --no-startup-id owncloud
 
-exec --no-startup-id polybar -r white
+exec --no-startup-id polybar -r bar
 
 exec --no-startup-id xinput set-prop "DELL080D:00 06CB:7A13 Touchpad" 284 1
 
