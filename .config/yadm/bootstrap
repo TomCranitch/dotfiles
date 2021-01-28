@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Install submodules
+cd "$HOME"
+
+echo "Init submodules"
+yadm submodule update --recursive --init
