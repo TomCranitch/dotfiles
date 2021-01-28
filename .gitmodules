@@ -1,0 +1,6 @@
+[submodule ".scripts/Zauthra-Pywal"]
+	path = .scripts/Zauthra-Pywal
+	url = https://github.com/GideonWolfe/Zathura-Pywal
+[submodule ".scripts/Zathura-Pywal"]
+	path = .scripts/Zathura-Pywal
+	url = https://github.com/GideonWolfe/Zathura-Pywal
