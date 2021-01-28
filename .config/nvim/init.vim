@@ -3,18 +3,17 @@ call plug#begin('~/vim/plugged')
 Plug 'lervag/vimtex'
 Plug 'SirVer/ultisnips'
 Plug 'junegunn/goyo.vim'
-Plug 'w0rp/ale'
-Plug 'majutsushi/tagbar'
+" Plug 'w0rp/ale'
+" Plug 'majutsushi/tagbar'
 Plug 'skywind3000/asyncrun.vim'
-Plug 'dylanaraps/wal.vim'
+" Plug 'dylanaraps/wal.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'editorconfig/editorconfig-vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-Plug 'liuchengxu/vista.vim'
-Plug 'skywind3000/asyncrun.vim'
+" Plug 'liuchengxu/vista.vim'
 Plug 'godlygeek/tabular'
 Plug 'tomcranitch/vim-markdown'
-Plug 'dhruvasagar/vim-table-mode'
+" Plug 'dhruvasagar/vim-table-mode'
 Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx'
 Plug 'tpope/vim-dadbod'
@@ -105,3 +104,6 @@ endfunction
 inoreabbrev <expr> <bar><bar>
           \ <SID>isAtStartOfLine('\|\|') ?
           \ '<c-o>:TableModeEnable<cr><bar><space><bar><left><left>' : '<bar><bar>'
+
+" Hopefully this fixes terminal colours
+let &t_ut=''

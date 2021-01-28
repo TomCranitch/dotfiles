@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =1
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/home/tom/.config/nvim'
+let g:netrw_dirhist_2='/home/tom/Nextcloud/Work/PAC/wptool/wptool/src/wptool'
 let g:netrw_dirhist_1='/var/lib/NetworkManager'
 let g:netrw_dirhist_0='/etc/NetworkManager/conf.d'
 let g:netrw_dirhist_9='/home/tom/.config/nvim'
@@ -8,5 +10,3 @@ let g:netrw_dirhist_7='/home/tom/.config/nvim'
 let g:netrw_dirhist_6='/usr/lib/jvm/default-runtime'
 let g:netrw_dirhist_5='/home/tom/Nextcloud/Development/timesheet-tools'
 let g:netrw_dirhist_4='/home/tom/Nextcloud/Development/timesheet-tools/.git'
-let g:netrw_dirhist_3='/home/tom/Nextcloud/Development/timesheet-tools'
-let g:netrw_dirhist_2='/home/tom/Nextcloud/Development/timesheet-tools/src'
