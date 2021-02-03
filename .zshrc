@@ -13,8 +13,8 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-source <(antibody init)
-antibody bundle < ~/.zsh_plugins.txt
+# source <(antibody init)
+# antibody bundle < ~/.zsh_plugins.txt
 
 # Customize powerlevel prompt
 # POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
@@ -43,12 +43,6 @@ export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Nextcloud/Development
 source /usr/bin/virtualenvwrapper.sh
 
-if [ -f ~/.bwsession ]; then
-    source ~/.bwsession
-else
-    print "404: ~/.bwsession not found. Please generate a bw session key"
-fi
-
 export PATH=/opt/flutter/bin:$PATH
 
 # Suppress opencv warnings
@@ -60,5 +54,11 @@ export PATH=$JAVA_HOME/bin:$PATH
 
 # Add .NET Core SDK tools
 export PATH="$PATH:/home/tom/.dotnet/tools"
+export PATH="/home/tom/.local/bin:$PATH"
 
 eval "$(starship init zsh)"
+
+export LANG=en_AU.UTF-8
+
+# https://github.com/keybase/keybase-issues/issues/2798
+export GPG_TTY=$(tty)

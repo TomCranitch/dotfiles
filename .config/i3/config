@@ -38,8 +38,8 @@ bindsym $mod+Shift+q kill
 
 ################## MY STUFF ###################
 
-gaps inner 15
-gaps outer 20
+gaps inner 20
+gaps outer 10
 
 
 set_from_resource $fg i3wm.color7
@@ -51,7 +51,7 @@ set_from_resource $bg i32m.color2
 new_window pixel 2
 
 exec --no-startup-id wal -R
-exec --no-startup-id compton -b
+exec --no-startup-id picom -b --experimental-backends
 
 exec --no-startup-id owncloud
 
