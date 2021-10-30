@@ -39,9 +39,9 @@ promptinit
 VISUAL=nvim; export VISUAL
 EDITOR=nvim; export EDITOR
 
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Nextcloud/Development
-source /usr/bin/virtualenvwrapper.sh
+# export WORKON_HOME=$HOME/.virtualenvs
+# export PROJECT_HOME=$HOME/Nextcloud/Development
+# source /usr/bin/virtualenvwrapper.sh
 
 export PATH=/opt/flutter/bin:$PATH
 

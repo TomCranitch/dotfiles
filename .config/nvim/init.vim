@@ -9,10 +9,11 @@ Plug 'skywind3000/asyncrun.vim'
 " Plug 'dylanaraps/wal.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'editorconfig/editorconfig-vim'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+" Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 " Plug 'liuchengxu/vista.vim'
 Plug 'godlygeek/tabular'
-Plug 'tomcranitch/vim-markdown'
+Plug 'plasticboy/vim-markdown'
+" Plug 'tomcranitch/vim-markdown'
 " Plug 'dhruvasagar/vim-table-mode'
 Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx'
@@ -107,3 +108,5 @@ inoreabbrev <expr> <bar><bar>
 
 " Hopefully this fixes terminal colours
 let &t_ut=''
+
+let g:vim_markdown_folding_disabled = 1

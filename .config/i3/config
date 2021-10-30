@@ -30,7 +30,7 @@ font pango:monospace 8
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec kitty #i3-sensible-terminal
+bindsym $mod+Return exec kitty -o allow_remote_control=yes #i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -89,11 +89,11 @@ bindsym XF86AudioPause exec --no-startup-id playerctl pause
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 
-bindsym --release Print exec spectacle -f
-bindsym --release Shift+Print exec shutter -r
+bindsym --release Print exec flameshot gui
+bindsym --release Shift+Print exec flameshot full
 
-bindsym $mod+Shift+f exec betterlockscreen -l "blur"
-bindsym $mod+Shift+s exec betterlockscreen -s "blur"
+bindsym $mod+Shift+f exec i3lock-fancy
+bindsym $mod+Shift+s exec i3lock-fancy; exec systemctl suspend
 
 bindsym $mod+Shift+o exec --no-startup-id python3 ~/.scripts/kb-light.py --loop
 ##############################################
@@ -237,3 +237,4 @@ bindsym $mod+r mode "resize"
 #	tray_output primary
 #}
 
+for_window [class="Tk"] floating enable
