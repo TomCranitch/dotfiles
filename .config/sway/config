@@ -242,9 +242,17 @@ bindsym $mod+Shift+S exec systemctl suspend
 
 exec flameshot
 
+# For GTK+ application (see sway wiki)
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+exec hash dbus-update-activation-environment 2>/dev/null && \
+     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+
 
 bindsym XF86MonBrightnessUp exec busctl call org.clightd.clightd /org/clightd/clightd/Backlight org.clightd.clightd.Backlight RaiseAll "d(bdu)s" 0.05 0 0 0 ""
 bindsym XF86MonBrightnessDown exec busctl call org.clightd.clightd /org/clightd/clightd/Backlight org.clightd.clightd.Backlight LowerAll "d(bdu)s" 0.05 0 0 0 ""
+
+
+for_window [app_id="ulauncher"] border pixel 0
  
 
 bindsym XF86AudioPlay exec --no-startup-id playerctl play
