@@ -241,6 +241,7 @@ exec swayidle -w \
 bindsym $mod+Shift+S exec systemctl suspend
 
 exec flameshot
+exec way-displays
 
 # For GTK+ application (see sway wiki)
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
