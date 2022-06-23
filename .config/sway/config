@@ -226,12 +226,17 @@ default_border pixel 2
 gaps inner 10
 gaps outer 5
 
+
+for_window {
+    [window_role="(pop-up|bubble|dialog)"] floating enable
+}
+
 # https://github.com/swaywm/sway/wiki#gtk-applications-take-20-seconds-to-start
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 exec hash dbus-update-activation-environment 2>/dev/null && \
      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 
-exec ~/.scripts/sunpaper/sunpaper.sh -d
+# exec ~/.scripts/sunpaper/sunpaper.sh -d
 
 ## Locking stuff
 
@@ -242,6 +247,9 @@ bindsym $mod+Shift+S exec systemctl suspend
 
 exec flameshot
 exec way-displays
+exec lxqt-policykit-agent
+
+exec mako
 
 # For GTK+ application (see sway wiki)
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
