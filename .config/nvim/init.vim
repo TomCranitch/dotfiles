@@ -7,6 +7,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'scalameta/nvim-metals'
+Plug 'simrat39/rust-tools.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'kyazdani42/nvim-web-devicons' " for file icons
 Plug 'kyazdani42/nvim-tree.lua'
@@ -20,6 +21,9 @@ Plug 'hrsh7th/nvim-cmp'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'lewis6991/spellsitter.nvim'
+
+Plug 'L3MON4D3/LuaSnip'
+Plug 'saadparwaiz1/cmp_luasnip'
 
 call plug#end()
 
@@ -95,7 +99,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'tsserver', 'tailwindcss', 'jedi_language_server', 'graphql' }
+local servers = { 'tsserver', 'tailwindcss', 'jedi_language_server', 'graphql', 'gopls', 'sqlls', 'vls' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
@@ -103,9 +107,20 @@ for _, lsp in ipairs(servers) do
       debounce_text_changes = 150,
     }
   }
-end
 
-local cmd = vim.cmd
+local rt = require("rust-tools")
+
+rt.setup({
+  server = {
+    on_attach = function(_, bufnr)
+      -- Hover actions
+      vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+      -- Code action groups
+      vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+    end,
+  },
+})
+end
 
 metals_config = require("metals").bare_config()
  -- TODO:  metals_config.init_options.statusBarProvider = "on"
@@ -116,6 +131,28 @@ EOF
 " Metals Config
 
 set shortmess-=F  " required by nvim-metals
+
+" sqls
+if executable('sqls')
+  augroup LspSqls
+      autocmd!
+      autocmd User lsp_setup call lsp#register_server({
+      \   'name': 'sqls',
+      \   'cmd': {server_info->['sqls']},
+      \   'whitelist': ['sql'],
+      \   'workspace_config': {
+      \     'sqls': {
+      \       'connections': [
+      \         {
+      \           'driver': 'postgresql',
+      \           'dataSourceName': 'host=127.0.0.1 port=15432 user=superpiggy dbname=piggy sslmode=disable',
+      \         },
+      \       ],
+      \     },
+      \   },
+      \ })
+  augroup END
+endif
 
 
 
@@ -145,6 +182,12 @@ let g:nvim_tree_show_icons = {
 lua << EOF
 local cmp = require("cmp")
 cmp.setup({
+  snippet = {
+    -- REQUIRED - you must specify a snippet engine
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
+    end,
+  },
   sources = {
     { name = "nvim_lsp" },
 	{ name = "path", keyword_length = 2 },

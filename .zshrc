@@ -60,5 +60,10 @@ eval "$(starship init zsh)"
 
 export LANG=en_AU.UTF-8
 
+export NIX_PATH=${NIX_PATH:+$NIX_PATH:}$HOME/.nix-defexpr/channels
+export PATH=$PATH:~/.nix-profile/bin
+
 # https://github.com/keybase/keybase-issues/issues/2798
 export GPG_TTY=$(tty)
+
+export PATH="${PATH}:${HOME}/.krew/bin"

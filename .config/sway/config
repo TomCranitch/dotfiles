@@ -24,7 +24,7 @@ set $menu ulauncher | xargs swaymsg exec --
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+# output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
 #
 # Example configuration:
 #
@@ -237,6 +237,7 @@ exec hash dbus-update-activation-environment 2>/dev/null && \
      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 
 # exec ~/.scripts/sunpaper/sunpaper.sh -d
+exec wal -R
 
 ## Locking stuff
 
@@ -244,8 +245,8 @@ exec swayidle -w \
 	before-sleep 'swaylock -i $(cat ~/.cache/wal/wal)'
 
 bindsym $mod+Shift+S exec systemctl suspend
+bindsym $mod+Shift+D exec swaylock -i $(cat ~/.cache/wal/wal)
 
-exec flameshot
 exec way-displays
 exec lxqt-policykit-agent
 
@@ -269,7 +270,6 @@ bindsym XF86AudioPause exec --no-startup-id playerctl pause
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 
-bindsym --release Print exec flameshot gui
-bindsym --release Shift+Print exec flameshot full
+bindsym --release Print exec grim -g "$(slurp)" - | swappy -f -
 
 include /etc/sway/config.d/*
